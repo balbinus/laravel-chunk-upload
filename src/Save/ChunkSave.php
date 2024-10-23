@@ -262,9 +262,7 @@ class ChunkSave extends AbstractSave
     {
         $path = $this->getChunkDirectory(true);
 
-        // creates the chunks dir
-        if (!file_exists($path)) {
-            mkdir($path, 0777, true);
-        }
+        // creates the chunks dir -- do not test for existence first, because of possible networked storage race conditions
+        @mkdir($path, 0777, true);
     }
 }
